@@ -11,7 +11,7 @@ const generateReadMe = require("./utils/generate-readme-cli.js");
 
 /** Global constants **/
 // Version
-const version = "0.2.0";
+const version = "0.3.0";
 
 // Misc functions
 function print(c) {
