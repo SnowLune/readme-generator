@@ -1,3 +1,9 @@
+/**********************
+ * README Generator
+ * Copyright 2022
+ * Author: Luna Roberge
+/**********************/
+
 // #include
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -24,6 +30,9 @@ function writeToFile(fileName, data) {
       E => {
          if (E) {
             console.error(E);
+         }
+         else {
+            print(`Successfuly wrote file '${fileName}'.`)
          }
       }
    )
