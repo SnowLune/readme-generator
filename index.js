@@ -1,12 +1,17 @@
+/**********************
+ * README Generator
+ * Copyright 2022
+ * Author: Luna Roberge
+/**********************/
+
 // #include
+const inquirer = require("inquirer");
 const fs = require("fs");
-const inq = require("inquirer");
+const generateReadMe = require("./utils/generate-readme-cli.js");
 
 /** Global constants **/
 // Version
-const version = "0.1.0";
-// Prompt tail string
-const promptString = "\n>";
+const version = "0.2.0";
 
 // Misc functions
 function print(c) {
@@ -14,125 +19,38 @@ function print(c) {
    return 0;
 }
 
-// Place data in object we can use with generateMarkdown
-function toMdData(a) {
-   d = [
-      {
-         name: a.projectTitle,
-         level: 1,
-         text: a.projectTitle
-      },
-      {
-         name: a.projectDescription,
-         level: 2,
-         text: a.projectDescription
-      },
-      {
-         name: "Installation",
-         level: 2,
-         text: a.projectInstall
-      },
-      {
-         name: "Usage",
-         level: 2,
-         text: a.projectUsage
-      },
-      {
-         name: "License",
-         level: 3,
-         text: a.projectLicense
-      },
-      {
-         name: "Contributing",
-         level: 3,
-         text: a.projectContrib
-      },
-      {
-         name: "Tests",
-         level: 3,
-         text: a.projectTest
-      },
-      {
-         name: "Questions",
-         level: 3,
-         text: a.projectQuestions
-      }
-   ]
-}
-
-const questions = [
-   {
-      type: "input",
-      name: "projectTitle",
-      message: "What is the title the project?" + promptString,
-      default: "Project Title",
-      validate: () => { return true }
-   },
-   {
-      type: "input",
-      name: "projectDescription",
-      message: "Enter a description of your project" + promptString,
-      default: "",
-      validate: () => { return true }
-   },
-   {
-      type: "input",
-      name: "projectInstall",
-      message: "Enter installation instructions for your project" + promptString,
-      default: ""
-   },
-   {
-      type: "input",
-      name: "projectUsage",
-      message: "Enter usage information for your project" + promptString,
-      default: ""
-   },
-   {
-      type: "input",
-      name: "projectContrib",
-      message: "Enter contribution guidelines for your project" + promptString,
-      default: ""
-   },
-   {
-      type: "input",
-      name: "projectTest",
-      message: "Enter test instructions for your project" + promptString,
-      default: ""
-   },
-   {
-      type: "list",
-      name: "projectLicense",
-      message: "Select the source code license for this project",
-      choices: ["Apache", "MIT", "GPLv2", "GPLv3"],
-      default: ""
-   },
-   {
-      type: "input",
-      name: "githubUserName",
-      message: "Enter your GitHub username" + promptString,
-      default: ""
-   },
-   {
-      type: "input",
-      name: "emailAddress",
-      message: "Enter your email address" + promptString,
-      default: ""
-   }
-];
-
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+   if (!fileName) {
+      console.error("ERROR: Invalid filename. Using current date.");
+      fileName = Date.now();
+   }
+
+   fs.writeFile(fileName, data, 
+      E => {
+         if (E) {
+            console.error(E);
+         }
+         else {
+            print(`Successfuly wrote file '${fileName}'.`)
+         }
+      }
+   )
+}
 
 // TODO: Create a function to initialize app
 function init() {
    print("README Generator, v" + version +'\n');
 
-   inq
-      .prompt(questions)
-      .then((answers) => {
-         print(JSON.stringify(answers));
-      });
+   var readMe = {};
 
+   inquirer
+      .prompt(generateReadMe.questions)
+      .then((answers) => {
+         readMe = generateReadMe.createReadMe(answers);
+         readMe.printMarkdown();
+         writeToFile("README_" + Date.now() + ".md", readMe.markdown);
+      }); 
 }
 
 // Function call to initialize app
