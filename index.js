@@ -47,7 +47,7 @@ function init() {
       .prompt(generateReadMe.questions)
       .then((answers) => {
          readMe = generateReadMe.createReadMe(answers);
-         readMe.printMarkdown();
+         readMe.setMarkdown();
          writeToFile("README_" + Date.now() + ".md", readMe.markdown);
       }); 
 }

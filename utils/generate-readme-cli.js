@@ -72,7 +72,13 @@ function createReadMe(a) {
    readme.addHeader("License", 2, true);
    readme.addContent("Contributing", a.projectContrib, 2, true);
    readme.addContent("Tests", a.projectTest, 2, true);
-   readme.addContent("Questions", a.projectQuestions, 2, true);
+   readme.addContent("Questions",
+         "GitHub: "
+            + readme.link(a.githubUserName, "https://github.com/" 
+            + a.githubUserName) + "\n\n"
+            + "For questions and feedback, please email: "
+            + readme.link(a.emailAddress, "mailto:" + a.emailAddress),
+         2, true);
 
    // Generate the README object
    readme.generate();
