@@ -21,6 +21,7 @@ class Markdown {
       let header = {
          name: h,
          level: level,
+         mdString: "",
          table: inTable
       }
       this.content.push(header);
@@ -29,7 +30,8 @@ class Markdown {
    // Add only text
    addText(t) {
       let text = {
-         text: t
+         text: t,
+         mdString: ""
       }
       this.content.push(text);
    }
@@ -71,7 +73,6 @@ class Markdown {
          console.log("Did not find table of contents. Continuing...");
       }
       else {
-         console.log("I:  " + tocIndex);
          // ...Create TOC string if we did find it, starting with the header
          m[tocIndex].mdString = 
             this.levelString(m[tocIndex])
@@ -119,8 +120,11 @@ class Markdown {
          if (m[i].mdString) {
             markdownString += m[i].mdString;
          }
+         else if (m[i].text) {
+            markdownString += m[i].text;
+         }
       }
-      console.log(markdownString);
+      // console.log(markdownString);
       return markdownString;
    }
 }
