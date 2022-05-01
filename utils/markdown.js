@@ -71,10 +71,11 @@ class Markdown {
          console.log("Did not find table of contents. Continuing...");
       }
       else {
+         console.log("I:  " + tocIndex);
          // ...Create TOC string if we did find it, starting with the header
-         m.content[tocIndex].mdString = 
-            levelString(m.content[tocIndex])
-               + m.content[tocIndex].name + endl;
+         m[tocIndex].mdString = 
+            this.levelString(m[tocIndex])
+               + m[tocIndex].name + endl;
          
          // Generate table list string
          var tableListStr = "";
@@ -85,7 +86,7 @@ class Markdown {
             }
          }
          // Add the table list to the markdown string
-         m.content[tocIndex].mdString += tableListStr;
+         m[tocIndex].mdString += tableListStr;
       }
 
       //
@@ -120,6 +121,7 @@ class Markdown {
          }
       }
       console.log(markdownString);
+      return markdownString;
    }
 }
 

@@ -23,14 +23,12 @@ const questions = [
       name: "projectTitle",
       message: "What is the title the project?" + promptString,
       default: "Project Title",
-      validate: () => { return true }
    },
    {
       type: "input",
       name: "projectDescription",
       message: "Enter a description of your project" + promptString,
-      default: "",
-      validate: () => { return true }
+      default: "Welcome to my project!",
    },
    {
       type: "input",
@@ -60,8 +58,8 @@ const questions = [
       type: "list",
       name: "projectLicense",
       message: "Select the source code license for this project",
-      choices: ["Apache", "MIT", "GPLv2", "GPLv3"],
-      default: ""
+      choices: ["Apache", "BSD", "MIT", "GPLv2", "GPLv3"],
+      default: this.choices[2]
    },
    {
       type: "input",
