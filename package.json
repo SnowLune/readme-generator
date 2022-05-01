@@ -1,5 +1,5 @@
 {
-  "name": "static-site",
+  "name": "readme-generator-cli",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Luna Roberge",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "inquirer": "^6.5.2"
   }
