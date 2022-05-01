@@ -15,7 +15,7 @@ Download or clone the source from GitHub.
 
 ## Usage
 Run `node index.js` in the program directory.
-### [Video Walkthrough](#)
+### [Video Walkthrough](https://www.youtube.com/watch?v=Di2IYe5Fz8Q)
 
 ## License
 This project is licensed under the MIT license.
