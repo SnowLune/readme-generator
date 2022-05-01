@@ -48,7 +48,9 @@ function init() {
       .then((answers) => {
          readMe = generateReadMe.createReadMe(answers);
          readMe.setMarkdown();
-         writeToFile("README_" + Date.now() + ".md", readMe.markdown);
+
+         var date = new Date();
+         writeToFile("README_" + date.toISOString() + ".md", readMe.markdown);
       }); 
 }
 
