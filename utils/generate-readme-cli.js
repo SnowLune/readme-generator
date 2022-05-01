@@ -1,5 +1,6 @@
 //*****************************/
-// generateReadMe.js
+// 'generate-readme-cli.js'
+// part of README Generator
 //*****************************/
 
 const md = require("./markdown.js");

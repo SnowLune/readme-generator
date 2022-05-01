@@ -7,7 +7,7 @@
 // #include
 const inquirer = require("inquirer");
 const fs = require("fs");
-const genMd = require("./utils/generateMarkdown.js");
+const generateReadMe = require("./utils/generate-readme-cli.js");
 
 /** Global constants **/
 // Version
@@ -45,9 +45,9 @@ function init() {
    var readMe = {};
 
    inquirer
-      .prompt(genMd.questions)
+      .prompt(generateReadMe.questions)
       .then((answers) => {
-         readMe = genMd.createReadMe(answers);
+         readMe = generateReadMe.createReadMe(answers);
          readMe.printMarkdown();
          writeToFile("README_" + Date.now() + ".md", readMe.markdown);
       }); 
