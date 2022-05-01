@@ -1,6 +1,7 @@
 // #include
+const inquirer = require("inquirer");
 const fs = require("fs");
-const inq = require("inquirer");
+const genMd = require("./utils/generateMarkdown.js");
 
 /** Global constants **/
 // Version
@@ -14,51 +15,7 @@ function print(c) {
    return 0;
 }
 
-// Place data in object we can use with generateMarkdown
-function toMdData(a) {
-   d = [
-      {
-         name: a.projectTitle,
-         level: 1,
-         text: a.projectTitle
-      },
-      {
-         name: a.projectDescription,
-         level: 2,
-         text: a.projectDescription
-      },
-      {
-         name: "Installation",
-         level: 2,
-         text: a.projectInstall
-      },
-      {
-         name: "Usage",
-         level: 2,
-         text: a.projectUsage
-      },
-      {
-         name: "License",
-         level: 3,
-         text: a.projectLicense
-      },
-      {
-         name: "Contributing",
-         level: 3,
-         text: a.projectContrib
-      },
-      {
-         name: "Tests",
-         level: 3,
-         text: a.projectTest
-      },
-      {
-         name: "Questions",
-         level: 3,
-         text: a.projectQuestions
-      }
-   ]
-}
+
 
 const questions = [
    {
@@ -121,16 +78,23 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+   if (!fileName) {
+      console.error("ERROR: Invalid filename. Using current date.");
+      fileName = Date.now();
+   }
+
+   fs.writeFile("./" + fileName)
+}
 
 // TODO: Create a function to initialize app
 function init() {
    print("README Generator, v" + version +'\n');
 
-   inq
+   inquirer
       .prompt(questions)
       .then((answers) => {
-         print(JSON.stringify(answers));
+         genMd.toMdData(answers);
       });
 
 }

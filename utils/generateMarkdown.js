@@ -1,9 +1,40 @@
-function renderLicense(license) {
+//*************************** */
+// generateReadMe.js
+//*****************************/
+
+
+const md = require("./markdown.js");
+
+// Place data in object we can use with generateMarkdown
+function toMdData(a) {
+   var d = new md.Markdown();
+   d.addContent(a.projectTitle, null, 1);
+   d.addContent("Description", a.projectDescription, 2);
+   d.addContent("Installation", a.projectInstall, 2, true);
+   d.addContent("Usage", a.projectUsage, 2, true);
+   d.addContent("License", a.projectLicense, 3, true);
+   d.addContent("Contributing", a.projectContrib, 3, true);
+   d.addContent("Tests", a.projectTest, 3, true);
+   d.addContent("Questions", a.projectQuestions, 3, true);
+
+   console.log(JSON.stringify(d));
+
+   d.generate();
+   d.printMarkdown();
+}
+
+function renderLicense(license, mdObj) {
    // If there is no license, return an empty string
    if (!license)
       return ""
   
    switch (license) {
+      case "Apache":
+         break;
+      case "GPLv2":
+         break;
+      case "GPLv3":
+         break;
       case "MIT":
          break;
       default:
@@ -20,64 +51,13 @@ function renderLicense(license) {
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
 
-class markdown {
-   constructor() {
-      this.content = [];
-   }
-
-   addContent(headingText, bodyText, level = 2, inTable = false) {
-      let c = {
-         name: headingText,
-         text: bodyText,
-         level: level,
-         table: inTable
-      }      
-      this.content.push(c);
-   }
-
-   addTable(headingText) {
-      let t = {
-         name: headingText,
-         text: "",
-         isTable: true
-      }
-   }
-
-   generateTable() {
-      var tocIndex = null;
-
-      for (let i = 0; i < this.content.length; i++) {
-         if (this.content[i].isTable === true) {
-            tocIndex = i;
-            break;
-         }
-      }
-
-      // Don't need to continue if we don't have a table of contents
-      if (tocIndex === null) {
-         console.log("Did not find table of contents. Continuing...");
-         return false;
-      }
-
-      for (let i = 0; i < this.content.length; i++) {
-
-      }
-
-   }
-   generateFromOrder() {
-   }
-}
-
-// TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-   var level = ["", "# ", "## ", "### ", "#### ", "##### ", "###### "];
-   for (i = 0; i < data.)
+   
+  // for (i = 0; i < data.)
    /*var md = {
       title: "# " + data.title,
       description: "## Description\n" + data.description,
@@ -101,4 +81,5 @@ function generateMarkdown(data) {
 
 }
 
-module.exports = generateMarkdown;
+module.exports = {toMdData, renderLicense, generateMarkdown};
+
