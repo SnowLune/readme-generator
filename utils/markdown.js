@@ -2,6 +2,7 @@
 class Markdown {
    constructor() {
       this.content = [];
+      this.markdown = "";
    }
 
    // Add a header and text
@@ -115,17 +116,18 @@ class Markdown {
    }
 
    printMarkdown(m = this.content) {
-      var markdownString = "";
+      var md = "";
       for (let i = 0; i < m.length; i++) {
          if (m[i].mdString) {
-            markdownString += m[i].mdString;
+            md += m[i].mdString;
          }
          else if (m[i].text) {
-            markdownString += m[i].text;
+            md += m[i].text;
          }
       }
-      // console.log(markdownString);
-      return markdownString;
+      
+      this.markdown = md;
+      return this.markdown;
    }
 }
 

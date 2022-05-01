@@ -83,6 +83,8 @@ function createReadMe(a) {
    // Generate the README object
    readme.generate();
 
+   // Hacky way of adding the license stuff post-generation
+   // TODO: make this not be like this
    readme.content[0].mdString += license.badgeMarkdown;
    readme.content[5].mdString += license.sectionText;
 
@@ -107,40 +109,44 @@ function renderLicense(license) {
                +"(https://img.shields.io/badge/License-Apache_2.0-blue.svg)]"
                +"(" + licenseInfo.link + ")\n";
          break;
+
       case "BSD":
          licenseInfo.link = "https://opensource.org/licenses/BSD-3-Clause";
          licenseInfo.badgeMarkdown = "[![License]"
                +"(https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)]"
                +"(" + licenseInfo.link + ")\n";
          break;
+
       case "GPLv2":
          licenseInfo.link = "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html";
          licenseInfo.badgeMarkdown = "[![License: GPL v2]"
                +"(https://img.shields.io/badge/License-GPL_v2-blue.svg)]"
                +"(" + licenseInfo.link + ")\n";
          break;
+
       case "GPLv3":
          licenseInfo.link = "https://www.gnu.org/licenses/gpl-3.0";
          licenseInfo.badgeMarkdown = "[![License: GPL v3]"
                +"(https://img.shields.io/badge/License-GPLv3-blue.svg)]"
                +"(" + licenseInfo.link + ")\n";
          break;
+
       case "MIT":
          licenseInfo.link = "https://opensource.org/licenses/MIT";
          licenseInfo.badgeMarkdown = "[![License: MIT]"
                +"(https://img.shields.io/badge/License-MIT-yellow.svg)]"
                +"(" + licenseInfo.link + ")\n";
          break;
+
       default:
          break;
    }
 
    licenseInfo.sectionText = "This project is licensed under the "
-         +license + " license.\n"
-         +"Learn more about the license [here](" + licenseInfo.link + ").\n"
+         + license + " license.\n"
+         + "Learn more about the license [here](" + licenseInfo.link + ").\n"
 
    return licenseInfo;
 }
 
 module.exports = { questions, createReadMe, renderLicense };
-

@@ -5,7 +5,7 @@ const genMd = require("./utils/generateMarkdown.js");
 
 /** Global constants **/
 // Version
-const version = "0.1.0";
+const version = "0.2.0";
 
 // Misc functions
 function print(c) {
@@ -39,15 +39,9 @@ function init() {
       .prompt(genMd.questions)
       .then((answers) => {
          readMe = genMd.createReadMe(answers);
-         print(readMe.printMarkdown());
-         print(readMe.printMarkdown());
-         print(readMe.printMarkdown());
-         print(readMe.printMarkdown());
-      });
-   
-   // print(readMeMarkdown);
-   // writeToFile("README_" + Date.now() + ".md", readMeMarkdown);
-
+         readMe.printMarkdown();
+         writeToFile("README_" + Date.now() + ".md", readMe.markdown);
+      }); 
 }
 
 // Function call to initialize app
