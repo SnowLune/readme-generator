@@ -18,32 +18,27 @@ const questions = [
    {
       type: "input",
       name: "projectDescription",
-      message: "Enter a description of your project" + promptString,
-      default: "Welcome to my project!",
+      message: "Enter a description of your project" + promptString
    },
    {
       type: "input",
       name: "projectInstall",
-      message: "Enter installation instructions for your project" + promptString,
-      default: ""
+      message: "Enter installation instructions for your project" + promptString
    },
    {
       type: "input",
       name: "projectUsage",
-      message: "Enter usage information for your project" + promptString,
-      default: ""
+      message: "Enter usage information for your project" + promptString
    },
    {
       type: "input",
       name: "projectContrib",
-      message: "Enter contribution guidelines for your project" + promptString,
-      default: ""
+      message: "Enter contribution guidelines for your project" + promptString
    },
    {
       type: "input",
       name: "projectTest",
-      message: "Enter test instructions for your project" + promptString,
-      default: ""
+      message: "Enter test instructions for your project" + promptString
    },
    {
       type: "list",
@@ -55,14 +50,12 @@ const questions = [
    {
       type: "input",
       name: "githubUserName",
-      message: "Enter your GitHub username" + promptString,
-      default: ""
+      message: "Enter your GitHub username" + promptString
    },
    {
       type: "input",
       name: "emailAddress",
-      message: "Enter your email address" + promptString,
-      default: ""
+      message: "Enter your email address" + promptString
    }
 ];
 
@@ -76,10 +69,10 @@ function createReadMe(a) {
    readme.addTable();
    readme.addContent("Installation", a.projectInstall, 2, true);
    readme.addContent("Usage", a.projectUsage, 2, true);
-   readme.addHeader("License", 3, true);
-   readme.addContent("Contributing", a.projectContrib, 3, true);
-   readme.addContent("Tests", a.projectTest, 3, true);
-   readme.addContent("Questions", a.projectQuestions, 3, true);
+   readme.addHeader("License", 2, true);
+   readme.addContent("Contributing", a.projectContrib, 2, true);
+   readme.addContent("Tests", a.projectTest, 2, true);
+   readme.addContent("Questions", a.projectQuestions, 2, true);
 
    // Generate the README object
    readme.generate();
