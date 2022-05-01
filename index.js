@@ -11,7 +11,7 @@ const generateReadMe = require("./utils/generate-readme-cli.js");
 
 /** Global constants **/
 // Version
-const version = "0.2.0";
+const version = "1.0.0";
 
 // Misc functions
 function print(c) {
@@ -38,7 +38,6 @@ function writeToFile(fileName, data) {
    )
 }
 
-// TODO: Create a function to initialize app
 function init() {
    print("README Generator, v" + version +'\n');
 
@@ -48,8 +47,10 @@ function init() {
       .prompt(generateReadMe.questions)
       .then((answers) => {
          readMe = generateReadMe.createReadMe(answers);
-         readMe.printMarkdown();
-         writeToFile("README_" + Date.now() + ".md", readMe.markdown);
+         readMe.setMarkdown();
+
+         var date = new Date();
+         writeToFile("README_" + date.toISOString() + ".md", readMe.markdown);
       }); 
 }
 

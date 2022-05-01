@@ -49,6 +49,19 @@ class Markdown {
       this.content.push(t);
    }
 
+   link(text, url) {
+      var linkMarkdown = `[${text}](${url})`;
+      return linkMarkdown;
+   }
+
+   image(text, imageUrl, linkUrl = null) {
+      var imageMarkdown = `![${text}](${imageUrl})`;
+      if (linkUrl) {
+         imageMarkdown += `(${linkUrl})`;
+      }
+      return imageMarkdown;
+   }
+
    levelString(mdContentObj) {
       const level = ["", "# ", "## ", "### ", "#### ", "##### ", "###### "];
       let L = level[mdContentObj.level];
@@ -115,7 +128,7 @@ class Markdown {
       }
    }
 
-   printMarkdown(m = this.content) {
+   setMarkdown(m = this.content) {
       var md = "";
       for (let i = 0; i < m.length; i++) {
          if (m[i].mdString) {
